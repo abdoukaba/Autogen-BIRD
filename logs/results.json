@@ -1,0 +1,43 @@
+{
+  "questions": [
+    {
+      "question_id": "0",
+      "question": "What is the highest eligible free rate for K-12 students in the schools in Alameda County?",
+      "gold_sql": "SELECT MAX(eligible_free_rate) FROM schools WHERE county = 'Alameda'",
+      "predicted_sql": "SELECT 'ERROR: Could not generate SQL';",
+      "execution_correct": false,
+      "agent_trace": {
+        "question": "What is the highest eligible free rate for K-12 students in the schools in Alameda County?",
+        "selector_output": {
+          "tables": [
+            {
+              "name": "schools",
+              "columns": [
+                {
+                  "name": "county",
+                  "type": "TEXT"
+                },
+                {
+                  "name": "eligible_free_rate",
+                  "type": "FLOAT"
+                }
+              ]
+            }
+          ]
+        },
+        "decomposer_output": "SELECT MAX(eligible_free_rate)\nFROM schools\nWHERE county = 'Alameda County';",
+        "refiner_iterations": [
+          {
+            "iteration": 1,
+            "sql_before": "SELECT MAX(eligible_free_rate)\nFROM schools\nWHERE county = 'Alameda County';",
+            "error": "no such column: eligible_free_rate",
+            "sql_after": "SELECT 'ERROR: Could not generate SQL';"
+          }
+        ]
+      }
+    }
+  ],
+  "total": 1,
+  "correct": 0,
+  "accuracy": 0.0
+}
